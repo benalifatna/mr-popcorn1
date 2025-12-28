@@ -1,6 +1,6 @@
 <?php
 /**
- * Undocumented function
+ * Cette function permat la connection à la base de données
  *
  * @return PDO
  */
@@ -38,6 +38,20 @@
             throw $pdoException;
         }
 
+        }
+
+        function getfilms(): array {
+            $db = connectToDb();
+            try {
+            $req = $db->prepare("SELECT * FROM film ORDER BY created_at DESC ");
+            $req->execute();
+            return $req->fetchAll();
+            $req->closeCursor();
+            } catch (\PDOException $pdoException){
+                throw $pdoException;
+            }
+            
+             return $films;
         }
         
     

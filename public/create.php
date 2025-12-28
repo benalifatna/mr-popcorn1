@@ -40,14 +40,14 @@ session_start();
 
         // Vérification des contraintes des input
          $formErrors=[];
-var_dump($_SERVER['REQUEST_METHOD']);
+// var_dump($_SERVER['REQUEST_METHOD']);
 
         if (isset($_POST['title'])) {
             $title = trim($_POST['title']);
 
             if ($title === "") {
                 $formErrors['title'] = "Le titre est obligatoire";
-            } else if (mb_strlen($_title)> 255 ){
+            } else if (mb_strlen($title)> 255 ){
                 $formErrors['title'] = "Le titre ne doit pas dépasser 255 caractères.";
             }
         }
@@ -62,9 +62,9 @@ var_dump($_SERVER['REQUEST_METHOD']);
             }
 
             if (isset($_POST['comment']) && ($_POST['comment']) !== "") {
-                $rating = trim($_POST['comment']);
+                $comment = trim($_POST['comment']);
                 
-                if (mb_strlen($_rating)> 1000 ){
+                if (mb_strlen($comment)> 1000 ){
                 $formErrors['comment'] = "Le commentaire ne doit pas dépasser 1000 caractères.";
             }
         }
@@ -76,9 +76,9 @@ var_dump($_SERVER['REQUEST_METHOD']);
             redirectToPage("create");
 
         }
-        dd('Continuer la partie');
+        // dd('Continuer la partie');
         $ratingRounded = null;
-        if (isset($_post['rating']) && $_POST['rating'] !== "") {
+        if (isset($_POST['rating']) && $_POST['rating'] !== "") {
             $ratingRounded = round($_POST['rating'],1);
         }
         // Requete d'insertion du nouveau film dans la base
